@@ -8,10 +8,14 @@
     <artifactId>chat</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>war</packaging>
+
     <properties>
         <lombok.version>1.16.18</lombok.version>
         <websocket.version>1.1</websocket.version>
         <log4j.version>1.2.17</log4j.version>
+        <mavenwarplugin.version>3.2.0</mavenwarplugin.version>
+        <tomcat7mavenplugin.version>2.2</tomcat7mavenplugin.version>
     </properties>
 
 
@@ -36,5 +40,26 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat7mavenplugin.version}</version>
+                <configuration>
+                    <port>8080</port>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${mavenwarplugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

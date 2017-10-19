@@ -1,9 +1,6 @@
 import lombok.extern.log4j.Log4j;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 
 @Log4j
@@ -11,24 +8,24 @@ import javax.websocket.server.ServerEndpoint;
 public class WebSocketServer {
 
     @OnOpen
-    public void onOpen() {
+    public void onOpen(Session session) {
         log.info("onOpen");
     }
 
     @OnMessage
-    public void onMessage() {
+    public void onMessage(String message, Session session) {
         log.info("onMessage");
 
     }
 
     @OnClose
-    public void onClose() {
+    public void onClose(CloseReason reason, Session session) {
         log.info("onClose");
 
     }
 
     @OnError
-    public void onError() {
+    public void onError(Throwable e) {
         log.info("onError");
 
     }
